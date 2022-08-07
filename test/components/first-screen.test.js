@@ -1,9 +1,12 @@
 import React from "react";
-import { render, screen } from "../test-utils";
+import { render, screen, fireEvent } from "../test-utils";
 import FirstScreen from "../../components/first-screen.component";
 import Timer from '../../components/timer.component'
 import TestScreen from '../../components/test-screen.component'
 import userEvent from '@testing-library/user-event';
+import { TextField } from '@mui/material';
+import Home from '../../pages/index'
+import TextInput from '../../components/text-input.component';
 
 const timeData = [
   { id: 1, title: '1 minute', value: 1},
@@ -85,7 +88,7 @@ describe("Paragraph Texts", () => {
   });
 });
 
-describe("Entered Text", () => {
+describe("Textarea Exist", () => {
   it("should render the following elements", () => {
     test = {
       paragraph: 'He heard the song coming from a distance, lightly floating over the air to his ears. Although it was soft and calming, he was wary. It seemed a little too soft and a little too calming for everything that was going on. He wanted it to be nothing more than beautiful music coming from the innocent and pure joy of singing, but in the back of his mind, he knew it was likely some type of trap.',
@@ -96,20 +99,70 @@ describe("Entered Text", () => {
     render(<TestScreen testData={test.paragraph} startTest={true} />)
     
     const startBtn = screen.getByTestId("start-button")
+    startBtn.click();
     const typedText = screen.getByTestId('typing')
     
-    startBtn.click();
-    userEvent.type(typedText, 'He heard the song');
-  
-    expect(typedText).toHaveValue("He heard the song");
+    const field  = typedText.querySelector('textarea')
+    expect(field).toBeInTheDocument()
   });
 });
+
+const inputMock = jest.fn();
+
+const Test = () => (
+  <TextField
+    data-testid={name}
+    variant="outlined"
+    error={false}
+    required
+    onChange={inputMock}
+    name={name}
+    label={'label'}
+    defaultValue={'4711'}
+    placeholder={'Enter Number'}
+    fullWidth
+    multiline={true}
+  />
+);
+
+describe("Test TextField", () => {
+  it('Input', () => {
+    const container = render(<Test />);
+
+    const input = container.getByDisplayValue('4711');
+
+    fireEvent.change(input, { target: { value: 'He heard the song' } });
+    expect(input.value).toBe('He heard the song');
+    // expect(inputMock.mock.calls).toHaveLength(1);
+  })
+});
+
+describe("Test paragraph TextField", () => {
+  it("should render the following elements in first screen component", async () => {
+    test = {
+      paragraph: `66`,
+      minutes: 2
+    }
+
+    const change = jest.fn()
+    
+    render(<Home />)
+    render(<TextInput handleOnChange={change} />)
+    const container = render(<FirstScreen handleParagragh={change} test={test} />);
+    
+    const textarea = container.getByDisplayValue('5770');
+
+    fireEvent.change(textarea, { target: { value: 'He heard the song' } });
+    expect(textarea.value).toBe('He heard the song');
+  });
+});
+
 
 // describe("Typing test", () => {
 //   it("should render the following elements", () => {
     
 //     test = {
-//       paragraph: 'He heard the song coming from a distance, lightly floating over the air to his ears. Although it was soft and calming, he was wary. It seemed a little too soft and a little too calming for everything that was going on. He wanted it to be nothing more than beautiful music coming from the innocent and pure joy of singing, but in the back of his mind, he knew it was likely some type of trap.',
+//       paragraph: 'He heard the song',
 //       minutes: 2
 //     }
 
@@ -117,12 +170,13 @@ describe("Entered Text", () => {
 //     render(<TestScreen testData={test.paragraph} startTest={true} />)
     
 //     const startBtn = screen.getByTestId("start-button")
+//     startBtn.click();
+    
 //     const typedText = screen.getByTestId('typing')
 //     const pars = test.paragraph.split(' ')
     
-//     startBtn.click();
 //     fireEvent.change(typedText, { target: { value: 'He heard the song' } });
-//     entere
+//     const enteredText = typedText.value
   
 //     expect(screen.getByTestId("paragraphs")).toHaveTextContent(test.paragraph.replace(/ /g,''));
 //   });

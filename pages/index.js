@@ -135,7 +135,7 @@ export default function Home() {
     const gwpm = ((points / 5) / calTimeTaken()).toPrecision(2)
     const errorrate = (errorRate > 0 ? errorRate / calTimeTaken() : 0).toPrecision(2)
     const wpm = gwpm - errorrate
-    return wpm.toPrecision(2)
+    return wpm.toPrecision(3)
   }
 
   useEffect(() => {

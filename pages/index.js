@@ -128,7 +128,6 @@ export default function Home() {
     } else {
         timeTaken = +(+test.minutes)
     }
-    console.log(+(+time.mins + (nonZero(time.secs))))
     return timeTaken < 0.1 ? timeTaken.toPrecision(1) : timeTaken.toPrecision(2);
   }
 

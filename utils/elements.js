@@ -6,7 +6,6 @@ import { Box } from '@mui/material';
 export const XButton = styled(Button)(({ bgcolor }) => ({
     backgroundColor: bgcolor,
     color: 'white',
-    marginTop: 10
 }))
 
 export const TestContainer = styled("div")({
@@ -22,16 +21,17 @@ export const TestContainer = styled("div")({
 export const ParagraphContainer = styled('div')({
     display: 'flex',
     flexWrap: 'wrap',
-    width: '70%',
-    gap: 3,
-    textAlign: 'justify'
+    width: '66vw',
+    gap: 4,
+    textAlign: 'justify',
+    marginTop: '7vh',
+    marginBottom: '.5vw'
 })
 
-export const TestParagraph = styled('span')(({ texts, words }) => ({ 
+export const TestParagraph = styled('span')({ 
     lineHeight: 1.5,
-    fontSize: 15,
-    color: texts === words ? 'green' : 'black'
-}))
+    fontSize: '1vw',
+})
 
 export const Container = styled('div')({
     display: 'flex',
@@ -43,8 +43,8 @@ export const Container = styled('div')({
   
 export const ContentBox = styled('div')({
     position: 'relative',
-    width: '90%',
-    height: '85%',
+    minWidth: '80%',
+    minHeight: '60%',
     boxShadow: '1px 1px 1px 2px #d3d3d3',
     padding: 10
 })
@@ -79,13 +79,13 @@ export const ContentBox = styled('div')({
   })
   
   export const Points = styled('span')(({ theme }) => ({
-    fontSize: 30,
+    fontSize: '2vw',
     fontFamily: theme.palette.fontFamily,
   }))
 
 export const Header = styled(Typography)(({ theme }) => ({
     padding: 10,
-    fontSize: 30,
+    fontSize: '2vw',
     borderBottom: '1px solid black',
     textAlign: 'center',
     width: '100%',
@@ -103,5 +103,5 @@ export const ScoreBoard = styled(Typography)({
 })
 
 export const Scores = styled(Typography)({
-    fontSize: 25,
+    fontSize: '1.5vw',
 })

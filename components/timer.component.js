@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 
 const Time = styled('span')(({ theme, limit }) => ({
-    fontSize: 30,
+    fontSize: '2vw',
     fontFamily: theme.palette.fontFamily,
     color: limit
 }))

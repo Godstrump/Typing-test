@@ -7,13 +7,13 @@ const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    width: '50%',
+    minWidth: '35vw',
     transform: 'translate(-50%, -50%)',
     bgcolor: 'background.paper',
     border: '1px solid #000',
     boxShadow: 24,
     p: 2,
-    height: '50%'
+    minHeight: '30vh'
 };
 
 
@@ -51,10 +51,10 @@ const SuccessModal = ({ reStart }, ref) => {
                     Results
                 </Header>
                 <ScoreBoard id="modal-modal-description" component="div">
-                    <Scores component="span">Score: {chart?.points}</Scores>
-                    <Scores component="span">Total words: {chart?.words}</Scores>
-                    <Scores component="span">Time taken: {chart?.mins}:{chart?.secs}</Scores>
-                    <XButton onClick={reStart} bgcolor="green">Restart</XButton>
+                    <Scores component="span">Speed: {+chart?.speed < 0 ? 1 : chart?.speed} WPM</Scores>
+                    <Scores component="span">Accuracy: {((+chart?.points / +chart?.words).toPrecision(2) * 100)}%</Scores>
+                    <Scores component="span">Time taken: {+chart?.timeTaken > 1 ? chart?.timeTaken + ' mins' : chart?.timeTaken + ' min'}</Scores>
+                    <XButton sx={{ mt: 3 }} onClick={reStart} bgcolor="green">Restart</XButton>
                 </ScoreBoard>
             </Box>
         </Modal>

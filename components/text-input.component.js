@@ -2,7 +2,6 @@ import { styled } from '@mui/system';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-import { paragraphData } from '../utils/constants';
 
 
 const MultilineField = styled(TextField)(({ fieldwidth }) => ({
@@ -10,7 +9,7 @@ const MultilineField = styled(TextField)(({ fieldwidth }) => ({
 }))
 
 const TextInput = ({ textValue, startTest, textType, paragraphData, handleOnChange, minrows, isMultiLine, isDisabled, label, width, errors, testId }) =>  (
-    <FormControl error={errors ? true : false} sx={{ m: 1, width: width }}>
+    <FormControl error={errors ? true : false} sx={{ width: width }}>
         <MultilineField 
             fullWidth
             value={textValue}
@@ -25,7 +24,7 @@ const TextInput = ({ textValue, startTest, textType, paragraphData, handleOnChan
             maxRows={minrows}
             disabled={isDisabled}
             helperText={errors}
-            data-testId={testId}
+            data-testid={testId}
             error={errors || textValue.length > 1603  ? true : false}
         />
         <FormHelperText>{startTest ? textValue.length + '/' + paragraphData.length : textValue.length + '/1603'}</FormHelperText>

@@ -24,14 +24,14 @@ const FirstScreen = ({ errors, test, handleSelectChange, startTest, handleInputC
                         }
                         </Form>
                         <Form>
-                        <Selector testId="paragraph-selector" errors={errors['paragraph']} data={paragraphData} label="Pick Paragraph" name="paragraph" value={test.paragraph} handleChange={handleSelectChange} />
-                        {
-                            +test.paragraph === 66 ? (
-                            <InputBox component="div" data-testid="paragraph-input">
-                                <TextInput textValue={paragraph} label="Paragraph" handleOnChange={handleParagragh} width='40%' minrows={8} />
-                            </InputBox>
-                            ) : ''
-                        }
+                            <Selector testId="paragraph-selector" errors={errors['paragraph']} data={paragraphData} label="Pick Paragraph" name="paragraph" value={test.paragraph} handleChange={handleSelectChange} />
+                            {
+                                +test.paragraph === 66 ? (
+                                <InputBox component="div" data-testid="paragraph-input">
+                                    <TextInput textValue={paragraph} label="Paragraph" handleOnChange={handleParagragh} width='40%' minrows={8} />
+                                </InputBox>
+                                ) : ''
+                            }
                         </Form>
                         <XButton data-testid="start-button" variant="contained" color="success" onClick={start}>Start</XButton>
                     </Form> 

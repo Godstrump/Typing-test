@@ -105,25 +105,25 @@ describe("Entered Text", () => {
   });
 });
 
-describe("Typing test", () => {
-  it("should render the following elements", () => {
+// describe("Typing test", () => {
+//   it("should render the following elements", () => {
     
-    test = {
-      paragraph: 'He heard the song coming from a distance, lightly floating over the air to his ears. Although it was soft and calming, he was wary. It seemed a little too soft and a little too calming for everything that was going on. He wanted it to be nothing more than beautiful music coming from the innocent and pure joy of singing, but in the back of his mind, he knew it was likely some type of trap.',
-      minutes: 2
-    }
+//     test = {
+//       paragraph: 'He heard the song coming from a distance, lightly floating over the air to his ears. Although it was soft and calming, he was wary. It seemed a little too soft and a little too calming for everything that was going on. He wanted it to be nothing more than beautiful music coming from the innocent and pure joy of singing, but in the back of his mind, he knew it was likely some type of trap.',
+//       minutes: 2
+//     }
 
-    render(<FirstScreen test={test} />);
-    render(<TestScreen testData={test.paragraph} startTest={true} />)
+//     render(<FirstScreen test={test} />);
+//     render(<TestScreen testData={test.paragraph} startTest={true} />)
     
-    const startBtn = screen.getByTestId("start-button")
-    const typedText = screen.getByTestId('typing')
-    const pars = test.paragraph.split(' ')
+//     const startBtn = screen.getByTestId("start-button")
+//     const typedText = screen.getByTestId('typing')
+//     const pars = test.paragraph.split(' ')
     
-    startBtn.click();
-    fireEvent.change(typedText, { target: { value: 'He heard the song' } });
-    entere
+//     startBtn.click();
+//     fireEvent.change(typedText, { target: { value: 'He heard the song' } });
+//     entere
   
-    expect(screen.getByTestId("paragraphs")).toHaveTextContent(test.paragraph.replace(/ /g,''));
-  });
-});
+//     expect(screen.getByTestId("paragraphs")).toHaveTextContent(test.paragraph.replace(/ /g,''));
+//   });
+// });

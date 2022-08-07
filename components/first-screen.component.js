@@ -28,7 +28,7 @@ const FirstScreen = ({ errors, test, handleSelectChange, startTest, handleInputC
                             {
                                 +test.paragraph === 66 ? (
                                 <InputBox component="div" data-testid="paragraph-input">
-                                    <TextInput dv="5770" textValue={paragraph} label="Paragraph" handleOnChange={handleParagragh} width='40%' minrows={8} />
+                                    <TextInput textValue={paragraph} label="Paragraph" handleOnChange={handleParagragh} width='40%' minrows={8} />
                                 </InputBox>
                                 ) : ''
                             }

@@ -21,6 +21,17 @@ export const theme = createTheme({
       tertiary: {
         main: '#ece4e4'
       }
+    },
+
+    breakpoints: {
+      values: {
+        xs: 450,
+        sm: 590,
+        md: 768,
+        mlg: 900,
+        lg: 1024,
+        xl: 1920,
+      },
     }
 });
 

@@ -18,20 +18,35 @@ export const TestContainer = styled("div")({
     width: '100%',
 })
 
-export const ParagraphContainer = styled('div')({
+export const ParagraphContainer = styled('div')(({ theme }) => ({
     display: 'flex',
     flexWrap: 'wrap',
     width: '66vw',
-    gap: 4,
+    gap: 5,
     textAlign: 'justify',
     marginTop: '7vh',
-    marginBottom: '.5vw'
-})
+    marginBottom: '.5vw',
+    [theme.breakpoints.down("sm")]: {
+      marginTop: '4vh',
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: '4vh',
+    },
+}))
 
-export const TestParagraph = styled('span')({ 
+export const TestParagraph = styled('span')(({ theme }) => ({ 
     lineHeight: 1.5,
-    fontSize: '1vw',
-})
+    fontSize: '.9vw',
+    [theme.breakpoints.down("mlg")]: {
+      fontSize: '1.5vw'
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: '1.7vw'
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '1.9vw'
+    },
+}))
 
 export const Container = styled('div')({
     display: 'flex',

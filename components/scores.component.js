@@ -7,7 +7,7 @@ const Scores = ({ startTest, points, test, paragraph }) => (
               !!startTest ?
                <TimeBox left={23}>
                 <Points 
-                style={{ color: 'black'}}
+                style={{ color: +(+test.paragraph === 66 ? paragraph.split(' ').length : test.paragraph.split(' ').length) === +points ? 'green' : 'black'}}
                 data-testid="score-points"
                 >
                     Score: {points}/{+test.paragraph === 66 ? paragraph.split(' ').length : test.paragraph.split(' ').length}

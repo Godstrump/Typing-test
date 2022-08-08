@@ -26,18 +26,9 @@ const TextInput = ({ textValue, startTest, textType, paragraphData, handleOnChan
             helperText={errors}
             data-testid={testId}
             error={errors || textValue.length > 1603  ? true : false}
-            onPaste={(e)=>{
-                e. preventDefault()
-                return paste;
-            }} 
-            onCopy={(e)=>{
-                e. preventDefault()
-                return copy;
-            }}
-            onCut={(e)=>{
-                e. preventDefault()
-                return cut;
-            }}
+            onPaste={(e)=> ( !paste ? e. preventDefault() : paste)} 
+            onCopy={(e)=> ( !copy ? e. preventDefault() : copy)}
+            onCut={(e)=> (!cut ? e. preventDefault() : cut)}
         />
         <FormHelperText>{startTest ? textValue.length + '/' + paragraphData.length : textValue.length + '/1603'}</FormHelperText>
     </FormControl>

@@ -8,7 +8,7 @@ const MultilineField = styled(TextField)(({ fieldwidth }) => ({
     width: fieldwidth,
 }))
 
-const TextInput = ({ textValue, startTest, textType, paragraphData, handleOnChange, minrows, isMultiLine, isDisabled, label, width, errors, testId }) =>  (
+const TextInput = ({ textValue, startTest, textType, paragraphData, handleOnChange, minrows, isMultiLine, isDisabled, label, width, errors, testId, paste, copy, cut }) =>  (
     <FormControl error={errors ? true : false} sx={{ width: width }}>
         <MultilineField 
             fullWidth
@@ -26,6 +26,18 @@ const TextInput = ({ textValue, startTest, textType, paragraphData, handleOnChan
             helperText={errors}
             data-testid={testId}
             error={errors || textValue.length > 1603  ? true : false}
+            onPaste={(e)=>{
+                e. preventDefault()
+                return paste;
+            }} 
+            onCopy={(e)=>{
+                e. preventDefault()
+                return copy;
+            }}
+            onCut={(e)=>{
+                e. preventDefault()
+                return cut;
+            }}
         />
         <FormHelperText>{startTest ? textValue.length + '/' + paragraphData.length : textValue.length + '/1603'}</FormHelperText>
     </FormControl>
@@ -42,6 +54,9 @@ TextInput.defaultProps = {
     errors: null,
     paragraphData: [],
     testId: '',
+    paste: false,
+    copy: false,
+    cut: false,
 }
 
 export default TextInput

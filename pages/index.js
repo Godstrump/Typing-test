@@ -23,7 +23,6 @@ export default function Home() {
   const [errors, setErrors] = useState({})
   const [timeUp, setTimeUp] = useState(false)
   const [timeStop, setTimeStop] = useState({})
-  const [errorRate, setErrorRate] = useState(0)
   const [wordsIdx, setWordsIdx] = useState({})
 
   const timer = useRef()
@@ -101,13 +100,10 @@ export default function Home() {
     const enteredText = e.currentTarget.value
     const typed = enteredText.split(' ')
     
-
     if (points <= typed.length) {
-       if (wordsIdx[typed.length - 1]) {
-        setErrorRate(state => state + 1)
-      }
-      
-      else if (typed[typed.length - 1] === words[typed.length - 1]) {
+      if (wordsIdx[typed.length - 1]) {
+        setPoints(state => state + 0)
+      } else if (typed[typed.length - 1] === words[typed.length - 1]) {
         setPoints(state => state + 1)
         setWordsIdx(state => ({ ...state, [typed.length - 1]: words[typed.length - 1]}))
       } else {
@@ -128,18 +124,20 @@ export default function Home() {
     } else {
         timeTaken = +(+test.minutes)
     }
-    return timeTaken < 0.1 ? timeTaken.toPrecision(1) : timeTaken.toPrecision(2);
+    return timeTaken < 0.1 ? +timeTaken.toPrecision(1) : +timeTaken.toPrecision(2);
   }
 
   const calSpeed = () => {
-    const gwpm = ((points / 5) / calTimeTaken()).toPrecision(2)
-    const errorrate = (errorRate > 0 ? errorRate / calTimeTaken() : 0).toPrecision(2)
-    const wpm = gwpm - errorrate
+    const error = +typedText.split(' ').length - +Object.keys(wordsIdx).length
+    const gwpm = ((+points / 5) / calTimeTaken()).toPrecision(2)
+    const errorRate = (+error > 0 ? +error / calTimeTaken() : 0).toPrecision(2)
+    const wpm = +gwpm - +errorRate
     return wpm < 1 ? wpm.toPrecision(1) : wpm.toPrecision(3)
   }
 
   useEffect(() => {
     const pars = +test.paragraph === 66 ? paragraph : test.paragraph
+  
     if (!isEmpty(timeStop) && !!typing) {
       setTimeUp(true)
       modal.current.setModalText({ ...timeStop, points: points, words: pars.split(' ').length, speed: calSpeed(), timeTaken: calTimeTaken() })
@@ -168,12 +166,12 @@ export default function Home() {
     setTypedText('')
     setTimeUp(false)
     setErrors({})
-    setErrorRate(0)
     setTimeStop({})
     timer.current.selectTimer(0)
     modal.current.setModalText({})
     modal.current.closeModal()
     setWordsIdx({})
+    setWords([])
   }
 
   return (

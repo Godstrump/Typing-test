@@ -222,6 +222,7 @@ export default function Home() {
               points={points}
               test={test}
               paragraph={paragraph}
+              testId="scorePoints"
             />
 
             <TimeBox>

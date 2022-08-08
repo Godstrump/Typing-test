@@ -1,13 +1,15 @@
 import { TimeBox, Points } from '../utils/elements'
 
 
-const Scores = ({ startTest, points, test, paragraph }) => (
+const Scores = ({ startTest, points, test, paragraph, testId }) => (
     <>
         { 
               !!startTest ?
                <TimeBox left={23}>
                 <Points 
-                style={{ color: Points }}>
+                style={{ color: (+test.paragraph === 66 ? paragraph.split(' ').length : test.paragraph.split(' ').length) % points === 0 ? 'green' : 'black'}}
+                data-testid={testId}
+                >
                     Score: {points}/{+test.paragraph === 66 ? paragraph.split(' ').length : test.paragraph.split(' ').length}
                 </Points>
               </TimeBox> 

@@ -84,17 +84,65 @@ describe("Test timer", () => {
   
       const change = jest.fn()
       const changeTest = jest.fn()
+      const timeUp = jest.fn()
+        const ref = {
+            current: {
+              selectTimer: jest.fn()
+            }
+        }
       
       render(<FirstScreen handleParagragh={change} test={test} />);
       const startBtn = screen.getByTestId("start-button")
       render(<TestScreen textValue={test.paragraph} handleOnChange={changeTest} testData={test.paragraph} startTest={true} />)
+      render(<Timer ref={ref} timeup={timeUp} />)
+      renderHook(() => ref.current.selectTimer(test.minutes))
       
       startBtn.click();
       
-      const textarea = screen.getByTestId('typing');
+      const typedText = screen.getByTestId('typing')
+      const field  = typedText.querySelector('textarea')
   
-      fireEvent.change(textarea, { target: { value: 'He heard the song' } });
+      fireEvent.change(field, { target: { value: 'He heard the song' } });
       expect(screen.getByTestId("paragraphs")).toHaveTextContent(test.paragraph.replace(/ /g,''));
-      expect(textarea.value).toBe('He heard the song');
+      expect(field.value).toBe('He heard the song');
+    });
+  });
+
+  describe("Test paragraph TextField in the Test component", () => {
+    it("should render the following elements in test screen component", async () => {
+      test = {
+        paragraph: `He heard the song`,
+        minutes: 2
+      }
+  
+      const change = jest.fn()
+      const changeTest = jest.fn()
+      const timeUp = jest.fn()
+        const ref = {
+            current: {
+              selectTimer: jest.fn()
+            }
+        }
+      
+      render(<FirstScreen handleParagragh={change} test={test} />);
+      const startBtn = screen.getByTestId("start-button")
+      render(<TestScreen textValue={test.paragraph} handleOnChange={changeTest} testData={test.paragraph} startTest={true} />)
+      render(<Timer ref={ref} timeup={timeUp} />)
+      renderHook(() => ref.current.selectTimer(test.minutes))
+      
+      startBtn.click();
+      
+      const typedText = screen.getByTestId('typing')
+      const field  = typedText.querySelector('textarea')
+  
+      fireEvent.change(field, { target: { value: 'He heard the song' } });
+      expect(screen.getByTestId("paragraphs")).toHaveTextContent(test.paragraph.replace(/ /g,''));
+      expect(field.value).toBe('He heard the song');
+
+      const fieldValue = field.value.split(' ')
+      const par = test.paragraph.split(' ')
+      expect(fieldValue[0]).toEqual(par[0])
+      expect(fieldValue[1]).toEqual(par[1])
+      expect(fieldValue[2]).toEqual(par[2])
     });
   });

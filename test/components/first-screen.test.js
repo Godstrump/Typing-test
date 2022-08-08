@@ -87,36 +87,13 @@ describe("Test paragraph TextField", () => {
     
     render(<Home />)
     render(<TextInput handleOnChange={change} />)
-    const container = render(<FirstScreen paragraph={'He heard the song'} handleParagragh={change} test={test} />);
+    render(<FirstScreen paragraph={'He heard the song'} handleParagragh={change} test={test} />);
     
-    const textarea = container.getByLabelText('Paragraph');
+    const textarea = screen.getByTestId('paragraph-first');
+    const field  = textarea.querySelector('textarea')
 
-    fireEvent.change(textarea, { target: { value: 'He heard the song' } });
-    expect(textarea.value).toBe('He heard the song');
+    fireEvent.change(field, { target: { value: 'He heard the song' } });
+    expect(field.value).toBe('He heard the song');
   });
 });
 
-
-// describe("Typing test", () => {
-//   it("should render the following elements", () => {
-    
-//     test = {
-//       paragraph: 'He heard the song',
-//       minutes: 2
-//     }
-
-//     render(<FirstScreen test={test} />);
-//     render(<TestScreen testData={test.paragraph} startTest={true} />)
-    
-//     const startBtn = screen.getByTestId("start-button")
-//     startBtn.click();
-    
-//     const typedText = screen.getByTestId('typing')
-//     const pars = test.paragraph.split(' ')
-    
-//     fireEvent.change(typedText, { target: { value: 'He heard the song' } });
-//     const enteredText = typedText.value
-  
-//     expect(screen.getByTestId("paragraphs")).toHaveTextContent(test.paragraph.replace(/ /g,''));
-//   });
-// });

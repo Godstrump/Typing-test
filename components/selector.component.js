@@ -3,8 +3,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
+import InputAdornment from '@mui/material/InputAdornment';
 
-const Selector = ({ data, handleChange, value, label, name, errors, testId }) => {
+
+const Selector = ({ data, handleChange, value, label, name, errors, testId, icon }) => {
     return (
         <FormControl error={errors ? true : false} sx={{ m: 1, width: '40%' }} data-testid={testId}>
             <InputLabel id="demo-simple-select-label">{label}</InputLabel>
@@ -15,6 +17,7 @@ const Selector = ({ data, handleChange, value, label, name, errors, testId }) =>
             value={value ?? ''}
             label={label}
             error={errors  ? true : false}
+            startAdornment={<InputAdornment position="start">{icon}</InputAdornment>}
             onChange={handleChange}
             >
                 {data && data.map((select, i) => (

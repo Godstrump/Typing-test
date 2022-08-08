@@ -64,9 +64,17 @@ export default function Home() {
       setErrors(state => ({ ...state, paragraph: 'Pick a paragraph' }))
       return
     }
-    if (isEmpty(testTime)) {
-      setErrors(state => ({ ...state, minutes: 'Pick a time', error: 'Enter a value' }))
-      return
+    if (test.minutes === 77) {
+      if (!testTime?.mins && !testTime?.secs) {
+        setErrors(state => ({ ...state, minutes: 'Pick a time', error: 'Enter a value' }))
+        return
+      }
+    }
+    if (!test.minutes === 77) {
+      if (!testTime) {
+        setErrors(state => ({ ...state, minutes: 'Pick a time', error: 'Enter a value' }))
+        return
+      }
     }
     if (isEmpty(pars)) {
       setErrors(state => ({ ...state, paragraph: 'Pick a paragraph' }))

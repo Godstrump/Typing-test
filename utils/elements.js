@@ -58,7 +58,7 @@ export const Container = styled('div')({
   
 export const ContentBox = styled('div')({
     position: 'relative',
-    minWidth: '80%',
+    minWidth: '75%',
     minHeight: '60%',
     boxShadow: '1px 1px 1px 2px #d3d3d3',
     padding: 10

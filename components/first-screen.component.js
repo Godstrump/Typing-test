@@ -2,7 +2,8 @@ import Selector from './selector.component'
 import FormInput from './form-input.component';
 import TextInput from './text-input.component';
 import { XButton, Title, Form, InputBox } from '../utils/elements'
-
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import VerticalSplitIcon from '@mui/icons-material/VerticalSplit';
 
 
 const FirstScreen = ({ errors, test, handleSelectChange, startTest, handleInputChange, time, paragraphData, paragraph, handleParagragh, start, timeData }) => (
@@ -13,7 +14,7 @@ const FirstScreen = ({ errors, test, handleSelectChange, startTest, handleInputC
                     <Title>Check your typing skills</Title>
                     <Form>
                         <Form>
-                        <Selector testId="time-selector" errors={errors['minutes']} data={timeData} label="Pick Time" name="minutes" value={test.minutes} handleChange={handleSelectChange} />
+                        <Selector icon={<AccessTimeIcon />} testId="time-selector" errors={errors['minutes']} data={timeData} label="Pick Time" name="minutes" value={test.minutes} handleChange={handleSelectChange} />
                         {
                             test.minutes === 77 ? (
                             <InputBox component="div" data-testid="time-input">
@@ -24,7 +25,7 @@ const FirstScreen = ({ errors, test, handleSelectChange, startTest, handleInputC
                         }
                         </Form>
                         <Form>
-                            <Selector testId="paragraph-selector" errors={errors['paragraph']} data={paragraphData} label="Pick Paragraph" name="paragraph" value={test.paragraph} handleChange={handleSelectChange} />
+                            <Selector icon={<VerticalSplitIcon />} testId="paragraph-selector" errors={errors['paragraph']} data={paragraphData} label="Pick Paragraph" name="paragraph" value={test.paragraph} handleChange={handleSelectChange} />
                             {
                                 +test.paragraph === 66 ? (
                                 <InputBox component="div" data-testid="paragraph-input">

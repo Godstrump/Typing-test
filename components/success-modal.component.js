@@ -51,8 +51,8 @@ const SuccessModal = ({ reStart }, ref) => {
                     Results
                 </Header>
                 <ScoreBoard id="modal-modal-description" component="div">
-                    <Scores component="span">Speed: {+chart?.speed < 0 ? 1 : chart?.speed} WPM</Scores>
-                    <Scores component="span">Accuracy: {((+chart?.points / +chart?.words) * 100).toPrecision(3)}%</Scores>
+                    <Scores data-testid="speed" component="span">Speed: {+chart?.speed < 0 ? 1 : chart?.speed} WPM</Scores>
+                    <Scores data-testid="accuracy" component="span">Accuracy: {((+chart?.points / +chart?.words) * 100).toPrecision(3)}%</Scores>
                     <XButton data-testid="modal-button" sx={{ mt: 3 }} onClick={reStart} bgcolor="green">Restart</XButton>
                 </ScoreBoard>
             </Box>
